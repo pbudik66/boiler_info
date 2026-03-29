@@ -1,4 +1,4 @@
 #!/bin/bash
 
-/usr/bin/rclone sync /home gdrive:/backup/rpiboiler/home
+/usr/local/bin/rclone sync /home gdrive:/backup/rpiboiler/home
 

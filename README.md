@@ -136,3 +136,16 @@ $ i2cdetect -y 'bcm2835 (i2c@7e804000)'
 70: -- -- -- -- -- -- -- --
 ```
 
+
+
+
+
+## Setup CRON
+
+Add lines in to crontab
+
+```
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/pi/boiler_info/bin/boiler-tm.sh >> /run/user/1000/boiler-tm.log 2>&1
+28,58 * * * * /home/pi/boiler_info/bin/boiler-data-sync.sh >> /run/user/1000/boiler-data-sync.log 2>&1
+```
+

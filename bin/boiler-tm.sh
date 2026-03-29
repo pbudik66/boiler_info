@@ -27,11 +27,11 @@ if [ ! -r "${DATADIR}/${DATAFILE}" ]; then
     mkdir -p ${DATADIR}
   fi
   # Check if exist on remote
-  /usr/bin/rclone lsf gdrive:${TARGETDIR} | grep '^'"${DATAFILE}"'$'
+  /usr/local/bin/rclone lsf gdrive:${TARGETDIR} | grep '^'"${DATAFILE}"'$'
   RC=$?
   if [ $RC -eq 0 ]; then
     echo "boiler-tm.sh: INFO: Copy file ${DATAFILE} from gdrive:${TARGETDIR}."
-    /usr/bin/rclone copy gdrive:${TARGETDIR}/${DATAFILE} ${DATADIR}
+    /usr/local/bin/rclone copy gdrive:${TARGETDIR}/${DATAFILE} ${DATADIR}
     ls -l ${DATADIR}/${DATAFILE}
   fi
 fi
