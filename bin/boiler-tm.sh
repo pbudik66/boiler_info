@@ -4,6 +4,8 @@ DEBUG=0
 DATADIR="/mnt/ramfs/1000/rpiboiler"
 DATAFILE="boiler-tm_`date '+%G%m%d'`.csv"
 TARGETDIR="data/rpiboiler"
+WWWDIR="~/www"
+INDEXFILE="${WWWDIR}/index.html"
 
 function read_air_data {
   curl -s http://192.168.77.108/values  | perl -e '
@@ -15,6 +17,48 @@ function read_air_data {
   }
 '
 }
+
+# Function check state of the httpd server, start httpd server
+function http_server {
+  cd ${WWWDIR}
+  ISRUN=`ps -ef | grep 'http.server 80' | grep -v 'grep' | wc -l`
+  if [ ${ISRUN} -eq 0 ]; then
+    echo "Start HTTP Server"
+    python3 -m http.server 80 > /dev/null 2>&1 &
+  fi
+}
+
+# Function write file index.html with current informations
+function write_html {
+echo '<h1>RPI Boiler</h1>' > ${INDEXFILE}
+echo '<p><strong>Date:</strong>       '"${OW_DATE}"'</p>' >> ${INDEXFILE}
+echo '<p><strong>Time:</strong>       '"${OW_TIME}"'</p>' >> ${INDEXFILE}
+echo '<table><thead><tr>' >> ${INDEXFILE}
+echo '<th align="left">Venkovni vzduch_______________</th><th align="right">Teplota [C]</th>' >> ${INDEXFILE}
+echo '</tr></thead>' >> ${INDEXFILE}
+echo '<tbody><tr>' >> ${INDEXFILE}
+echo '<td align="left">Teplota</td><td align="right">'"${AIR_TEMP}"'</td>' >> ${INDEXFILE}
+echo '</tr></tbody></table>' >> ${INDEXFILE}
+echo '<table><thead><tr>' >> ${INDEXFILE}
+echo '<th align="left">Tepla uzitkova voda____________</th><th align="right">Teplota [C]</th>' >> ${INDEXFILE}
+echo '</tr></thead>' >> ${INDEXFILE}
+echo '<tbody><tr>' >> ${INDEXFILE}
+echo '<td align="left">TUV Teplota:</td><td align="right">'"${TUV_TEMP}"'</td>' >> ${INDEXFILE}
+echo '</tr>' >> ${INDEXFILE}
+echo '<tr>' >> ${INDEXFILE}
+echo '<td align="left">TUV Vstup:</td><td align="right">'"${TUV_INP}"'</td>' >> ${INDEXFILE}
+echo '</tr></tbody></table>' >> ${INDEXFILE}
+echo '<table><thead><tr>' >> ${INDEXFILE}
+echo '<th align="left">Topny okruh__________________</th><th align="right">Teplota [C]</th>' >> ${INDEXFILE}
+echo '</tr></thead>' >> ${INDEXFILE}
+echo '<tbody><tr>' >> ${INDEXFILE}
+echo '<td align="left">TO Vstup</td><td align="right">'"${TO_INP}"'</td>' >> ${INDEXFILE}
+echo '</tr>' >> ${INDEXFILE}
+echo '<tr>' >> ${INDEXFILE}
+echo '<td align="left">TO Zpet</td><td align="right">'"${TO_OUT}"'</td>' >> ${INDEXFILE}
+echo '</tr></tbody></table>' >> ${INDEXFILE}
+}
+
 
 # 9C873E1B1901:TO_vstup:green
 # 4618C1070000:TUV_vstup:red
@@ -28,6 +72,11 @@ TO_OUT=`owread /28.41DA211C1901/temperature`
 TUV_TEMP=`owread /28.F6775F070000/temperature`
 TUV_INP=`owread /28.4618C1070000/temperature`
 AIR_TEMP=`read_air_data`
+
+# Run HTTPD Server
+http_server
+# Update WWW
+write_html
 
 if [ ${DEBUG} -eq 0 ]; then
   echo "${OW_DATE} ${OW_TIME} INFO: boiler-tm.sh: Run"
