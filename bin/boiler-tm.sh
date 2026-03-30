@@ -27,7 +27,7 @@ TO_INP=`owread /28.9C873E1B1901/temperature`
 TO_OUT=`owread /28.41DA211C1901/temperature`
 TUV_TEMP=`owread /28.F6775F070000/temperature`
 TUV_INP=`owread /28.4618C1070000/temperature`
-AIR_TEMP=¨read_air_data`
+AIR_TEMP=`read_air_data`
 
 if [ ${DEBUG} -eq 0 ]; then
   echo "${OW_DATE} ${OW_TIME} INFO: boiler-tm.sh: Run"
