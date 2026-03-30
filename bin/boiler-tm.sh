@@ -4,7 +4,7 @@ DEBUG=0
 DATADIR="/mnt/ramfs/1000/rpiboiler"
 DATAFILE="boiler-tm_`date '+%G%m%d'`.csv"
 TARGETDIR="data/rpiboiler"
-WWWDIR="~/www"
+WWWDIR="${HOME}/www"
 INDEXFILE="${WWWDIR}/index.html"
 
 function read_air_data {
