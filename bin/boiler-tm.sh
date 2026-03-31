@@ -31,33 +31,33 @@ function http_server {
 
 # Function write file index.html with current informations
 function write_html {
-echo '<h1>RPI Boiler</h1>' > ${INDEXFILE}
-echo '<p><strong>Date:</strong>       '"${OW_DATE}"'</p>' >> ${INDEXFILE}
-echo '<p><strong>Time:</strong>       '"${OW_TIME}"'</p>' >> ${INDEXFILE}
-echo '<table><thead><tr>' >> ${INDEXFILE}
-echo '<th align="left">Venkovni vzduch_______________</th><th align="right">Teplota [C]</th>' >> ${INDEXFILE}
-echo '</tr></thead>' >> ${INDEXFILE}
-echo '<tbody><tr>' >> ${INDEXFILE}
-echo '<td align="left">Teplota</td><td align="right">'"${AIR_TEMP}"'</td>' >> ${INDEXFILE}
-echo '</tr></tbody></table>' >> ${INDEXFILE}
-echo '<table><thead><tr>' >> ${INDEXFILE}
-echo '<th align="left">Tepla uzitkova voda____________</th><th align="right">Teplota [C]</th>' >> ${INDEXFILE}
-echo '</tr></thead>' >> ${INDEXFILE}
-echo '<tbody><tr>' >> ${INDEXFILE}
-echo '<td align="left">TUV Teplota:</td><td align="right">'"${TUV_TEMP}"'</td>' >> ${INDEXFILE}
-echo '</tr>' >> ${INDEXFILE}
-echo '<tr>' >> ${INDEXFILE}
-echo '<td align="left">TUV Vstup:</td><td align="right">'"${TUV_INP}"'</td>' >> ${INDEXFILE}
-echo '</tr></tbody></table>' >> ${INDEXFILE}
-echo '<table><thead><tr>' >> ${INDEXFILE}
-echo '<th align="left">Topny okruh__________________</th><th align="right">Teplota [C]</th>' >> ${INDEXFILE}
-echo '</tr></thead>' >> ${INDEXFILE}
-echo '<tbody><tr>' >> ${INDEXFILE}
-echo '<td align="left">TO Vstup</td><td align="right">'"${TO_INP}"'</td>' >> ${INDEXFILE}
-echo '</tr>' >> ${INDEXFILE}
-echo '<tr>' >> ${INDEXFILE}
-echo '<td align="left">TO Zpet</td><td align="right">'"${TO_OUT}"'</td>' >> ${INDEXFILE}
-echo '</tr></tbody></table>' >> ${INDEXFILE}
+  echo '<h1>RPI Boiler</h1>' > ${INDEXFILE}
+  echo '<p><strong>Date:</strong>       '"${OW_DATE}"'</p>' >> ${INDEXFILE}
+  echo '<p><strong>Time:</strong>       '"${OW_TIME}"'</p>' >> ${INDEXFILE}
+  echo '<table><thead><tr>' >> ${INDEXFILE}
+  echo '<th align="left">Venkovni vzduch_______________</th><th align="right">Teplota [C]</th>' >> ${INDEXFILE}
+  echo '</tr></thead>' >> ${INDEXFILE}
+  echo '<tbody><tr>' >> ${INDEXFILE}
+  echo '<td align="left">Teplota</td><td align="right">'"${AIR_TEMP}"'</td>' >> ${INDEXFILE}
+  echo '</tr></tbody></table>' >> ${INDEXFILE}
+  echo '<table><thead><tr>' >> ${INDEXFILE}
+  echo '<th align="left">Tepla uzitkova voda____________</th><th align="right">Teplota [C]</th>' >> ${INDEXFILE}
+  echo '</tr></thead>' >> ${INDEXFILE}
+  echo '<tbody><tr>' >> ${INDEXFILE}
+  echo '<td align="left">TUV Teplota:</td><td align="right">'"${TUV_TEMP}"'</td>' >> ${INDEXFILE}
+  echo '</tr>' >> ${INDEXFILE}
+  echo '<tr>' >> ${INDEXFILE}
+  echo '<td align="left">TUV Vstup:</td><td align="right">'"${TUV_INP}"'</td>' >> ${INDEXFILE}
+  echo '</tr></tbody></table>' >> ${INDEXFILE}
+  echo '<table><thead><tr>' >> ${INDEXFILE}
+  echo '<th align="left">Topny okruh__________________</th><th align="right">Teplota [C]</th>' >> ${INDEXFILE}
+  echo '</tr></thead>' >> ${INDEXFILE}
+  echo '<tbody><tr>' >> ${INDEXFILE}
+  echo '<td align="left">TO Vstup</td><td align="right">'"${TO_INP}"'</td>' >> ${INDEXFILE}
+  echo '</tr>' >> ${INDEXFILE}
+  echo '<tr>' >> ${INDEXFILE}
+  echo '<td align="left">TO Zpet</td><td align="right">'"${TO_OUT}"'</td>' >> ${INDEXFILE}
+  echo '</tr></tbody></table>' >> ${INDEXFILE}
 }
 
 
