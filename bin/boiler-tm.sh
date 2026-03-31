@@ -22,7 +22,7 @@ function read_air_data {
 # Function check state of the httpd server, start httpd server
 function http_server {
   cd ${WWWDIR}
-  ISRUN=`ps -ef | grep 'http.server ${HTTPDPORT}' | grep -v 'grep' | wc -l`
+  ISRUN=`ps -ef | grep "http.server ${HTTPDPORT}" | grep -v 'grep' | wc -l`
   if [ ${ISRUN} -eq 0 ]; then
     echo "${OW_DATE} ${OW_TIME} INFO: Start HTTP Server - HTTPD Port: ${HTTPDPORT}, WWW Dir: ${WWWDIR}"
     python3 -m http.server ${HTTPDPORT} > /dev/null 2>&1 &
