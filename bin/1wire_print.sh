@@ -5,7 +5,7 @@ IND_FILE="index.html"
 function read_air_data {
   curl -s http://192.168.77.108/values  | perl -e '
   while ( my $line = <> ) {
-    if ( $line =~ /^.*<tr><td>BME280<\/td><td>temperature<\/td><td class=.*>([.\d]*)&nbsp;°C<\/td><\/tr>.*$/ ) {
+    if ( $line =~ /^.*<tr><td>BME280<\/td><td>temperature<\/td><td class=.*>([-.\d]*)&nbsp;°C<\/td><\/tr>.*$/ ) {
       #print("DBG Line:", $line, "\n", "Teplota: ", $1, "\n");
       print($1);
     }
@@ -15,33 +15,33 @@ function read_air_data {
 
 function write_html {
 
-echo '<h1>RPI Boiler</h1>' > ${IND_FILE}
-echo '<p><strong>Date:</strong>       '"${OW_DATE}"'</p>' >> ${IND_FILE}
-echo '<p><strong>Time:</strong>       '"${OW_TIME}"'</p>' >> ${IND_FILE}
-echo '<table><thead><tr>' >> ${IND_FILE}
-echo '<th align="left">Venkovni vzduch_______________</th><th align="right">Teplota [C]</th>' >> ${IND_FILE}
-echo '</tr></thead>' >> ${IND_FILE}
-echo '<tbody><tr>' >> ${IND_FILE}
-echo '<td align="left">Teplota</td><td align="right">'"${AIR_TEMP}"'</td>' >> ${IND_FILE}
-echo '</tr></tbody></table>' >> ${IND_FILE}
-echo '<table><thead><tr>' >> ${IND_FILE}
-echo '<th align="left">Tepla uzitkova voda____________</th><th align="right">Teplota [C]</th>' >> ${IND_FILE}
-echo '</tr></thead>' >> ${IND_FILE}
-echo '<tbody><tr>' >> ${IND_FILE}
-echo '<td align="left">TUV Teplota:</td><td align="right">'"${TUV_TEMP}"'</td>' >> ${IND_FILE}
-echo '</tr>' >> ${IND_FILE}
-echo '<tr>' >> ${IND_FILE}
-echo '<td align="left">TUV Vstup:</td><td align="right">'"${TUV_INP}"'</td>' >> ${IND_FILE}
-echo '</tr></tbody></table>' >> ${IND_FILE}
-echo '<table><thead><tr>' >> ${IND_FILE}
-echo '<th align="left">Topny okruh__________________</th><th align="right">Teplota [C]</th>' >> ${IND_FILE}
-echo '</tr></thead>' >> ${IND_FILE}
-echo '<tbody><tr>' >> ${IND_FILE}
-echo '<td align="left">TO Vstup</td><td align="right">'"${TO_INP}"'</td>' >> ${IND_FILE}
-echo '</tr>' >> ${IND_FILE}
-echo '<tr>' >> ${IND_FILE}
-echo '<td align="left">TO Zpet</td><td align="right">'"${TO_OUT}"'</td>' >> ${IND_FILE}
-echo '</tr></tbody></table>' >> ${IND_FILE}
+  echo '<h1>RPI Boiler</h1>' > ${IND_FILE}
+  echo '<p><strong>Date:</strong>       '"${OW_DATE}"'</p>' >> ${IND_FILE}
+  echo '<p><strong>Time:</strong>       '"${OW_TIME}"'</p>' >> ${IND_FILE}
+  echo '<table><thead><tr>' >> ${IND_FILE}
+  echo '<th align="left">Venkovni vzduch_______________</th><th align="right">Teplota [C]</th>' >> ${IND_FILE}
+  echo '</tr></thead>' >> ${IND_FILE}
+  echo '<tbody><tr>' >> ${IND_FILE}
+  echo '<td align="left">Teplota</td><td align="right">'"${AIR_TEMP}"'</td>' >> ${IND_FILE}
+  echo '</tr></tbody></table>' >> ${IND_FILE}
+  echo '<table><thead><tr>' >> ${IND_FILE}
+  echo '<th align="left">Tepla uzitkova voda____________</th><th align="right">Teplota [C]</th>' >> ${IND_FILE}
+  echo '</tr></thead>' >> ${IND_FILE}
+  echo '<tbody><tr>' >> ${IND_FILE}
+  echo '<td align="left">TUV Teplota:</td><td align="right">'"${TUV_TEMP}"'</td>' >> ${IND_FILE}
+  echo '</tr>' >> ${IND_FILE}
+  echo '<tr>' >> ${IND_FILE}
+  echo '<td align="left">TUV Vstup:</td><td align="right">'"${TUV_INP}"'</td>' >> ${IND_FILE}
+  echo '</tr></tbody></table>' >> ${IND_FILE}
+  echo '<table><thead><tr>' >> ${IND_FILE}
+  echo '<th align="left">Topny okruh__________________</th><th align="right">Teplota [C]</th>' >> ${IND_FILE}
+  echo '</tr></thead>' >> ${IND_FILE}
+  echo '<tbody><tr>' >> ${IND_FILE}
+  echo '<td align="left">TO Vstup</td><td align="right">'"${TO_INP}"'</td>' >> ${IND_FILE}
+  echo '</tr>' >> ${IND_FILE}
+  echo '<tr>' >> ${IND_FILE}
+  echo '<td align="left">TO Zpet</td><td align="right">'"${TO_OUT}"'</td>' >> ${IND_FILE}
+  echo '</tr></tbody></table>' >> ${IND_FILE}
 }
 
 # 9C873E1B1901:TO_vstup:green

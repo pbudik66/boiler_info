@@ -11,7 +11,7 @@ INDEXFILE="${WWWDIR}/index.html"
 function read_air_data {
   curl -s http://192.168.77.108/values  | perl -e '
   while ( my $line = <> ) {
-    if ( $line =~ /^.*<tr><td>BME280<\/td><td>temperature<\/td><td class=.*>([.\d]*)&nbsp;°C<\/td><\/tr>.*$/ ) {
+    if ( $line =~ /^.*<tr><td>BME280<\/td><td>temperature<\/td><td class=.*>([-.\d]*)&nbsp;°C<\/td><\/tr>.*$/ ) {
       #print("DBG Line:", $line, "\n", "Teplota: ", $1, "\n");
       print($1);
     }
