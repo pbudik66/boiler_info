@@ -149,3 +149,10 @@ Add lines in to crontab
 28,58 * * * * /home/pi/boiler_info/bin/boiler-data-sync.sh >> /run/user/1000/boiler-data-sync.log 2>&1
 ```
 
+
+```
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/pi/boiler_info/bin/boiler-tm.sh >> /mnt/ramfs/1000/rpiboiler/boiler-tm.log 2>&1
+28,58 * * * * /home/pi/boiler_info/bin/boiler-data-sync.sh >> /mnt/ramfs/1000/rpiboiler/boiler-data-sync.log 2>&1
+```
+
+/mnt/ramfs/1000/rpiboiler

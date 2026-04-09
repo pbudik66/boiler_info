@@ -47,6 +47,12 @@ TUV_TEMP=`${OWREAD} /28.F6775F070000/temperature`
 TUV_INP=`${OWREAD} /28.4618C1070000/temperature`
 AIR_TEMP=`eval_command read_air_data 15`
 
+  if [ ! -d ${DATADIR} ]; then
+    mkdir -p ${DATADIR}
+    echo "boiler-tm.sh: INFO: Create directory ${DATADIR}."
+    #exit 0
+  fi
+
 if [ ${DEBUG} -eq 0 ]; then
   echo "${OW_DATE} ${OW_TIME} INFO: boiler-tm.sh: Run"
 fi
